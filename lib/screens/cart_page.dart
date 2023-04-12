@@ -1,9 +1,7 @@
 import 'package:e_commerce_app/controllers/product_controlers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:provider/provider.dart';
 import '../globals/all_products.dart';
-import '../models/product_models.dart';
 
 class CartPage extends StatefulWidget {
   const CartPage({Key? key}) : super(key: key);
@@ -17,8 +15,6 @@ class _CartPageState extends State<CartPage> {
 
   @override
   Widget build(BuildContext context) {
-    ProductDB data = ModalRoute.of(context)!.settings.arguments as ProductDB;
-
     double h = MediaQuery.of(context).size.height;
     double w = MediaQuery.of(context).size.width;
 
@@ -40,216 +36,203 @@ class _CartPageState extends State<CartPage> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(10),
-        child: ListView.builder(
-          itemCount: 10,
-          itemBuilder: (context, index) {
-            return Card(
-              elevation: 5,
-              child: SizedBox(
-                height: h * 0.15,
-                width: w,
-                child: Padding(
-                  padding: const EdgeInsets.all(8),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      SizedBox(
-                        height: h * 0.15,
-                        width: w * 0.3,
-                        child: const Image(
-                          image: AssetImage(
-                            "images/food/7 cheese.jpg",
-                          ),
-                          fit: BoxFit.cover,
-                        ),
+        child: Column(
+          children: [
+            Expanded(
+              flex: 12,
+              child: ListView.builder(
+                itemCount: productController.addedProduct.length,
+                itemBuilder: (context, i) {
+                  return Card(
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(25),
                       ),
-                      Column(
-                        children: [
-                          const Text(
-                            "Chinese bhel",
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
-                            ),
+                    ),
+                    elevation: 5,
+                    child: Stack(
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
                           ),
-                          const Text(
-                            "RS: 500",
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black26,
-                            ),
-                          ),
-                          Row(
+                          height: h * 0.4,
+                          child: Column(
                             children: [
-                              IconButton(
-                                onPressed: () {},
-                                icon: const Icon(
-                                  Icons.remove,
+                              const SizedBox(height: 10),
+                              Container(
+                                height: h * 0.25,
+                                width: w,
+                                decoration: BoxDecoration(
+                                  borderRadius: const BorderRadius.vertical(
+                                    top: Radius.circular(25),
+                                  ),
+                                  image: DecorationImage(
+                                    image: AssetImage(
+                                      "${productController.addedProduct[i].image}",
+                                    ),
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
                               ),
-                              const Text(
-                                "1",
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black26,
+                              const SizedBox(height: 10),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "   RS: ${productController.addedProduct[i].price}",
+                                    style: const TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w600,
+                                      color: Colors.grey,
+                                    ),
+                                  ),
+                                  const Text(
+                                    "🕖 30min",
+                                    style: TextStyle(
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.w500,
+                                      color: Colors.grey,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Text(
+                                "${productController.addedProduct[i].name}",
+                                style: const TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w600,
                                 ),
                               ),
-                              IconButton(
-                                onPressed: () {},
-                                icon: const Icon(
-                                  Icons.add,
-                                ),
+                              const Spacer(),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  InkWell(
+                                    onTap: () {
+                                      productController.removeQuantity(
+                                          product: Global.food[i], index: i);
+                                      setState(() {});
+                                    },
+                                    child: Container(
+                                      height: 50,
+                                      width: 50,
+                                      decoration: const BoxDecoration(
+                                        color: Colors.red,
+                                        borderRadius: BorderRadius.only(
+                                          topRight: Radius.circular(25),
+                                          bottomLeft: Radius.circular(25),
+                                        ),
+                                      ),
+                                      child: const Icon(
+                                        Icons.remove,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    width: 10,
+                                  ),
+                                  const SizedBox(width: 20),
+                                  const Spacer(),
+                                  InkWell(
+                                    onTap: () {
+                                      productController.removeQuantity(
+                                          product: Global.food[i], index: i);
+                                      setState(() {});
+                                    },
+                                    child: Container(
+                                      height: 50,
+                                      width: 50,
+                                      decoration: const BoxDecoration(
+                                        color: Colors.green,
+                                        borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(25),
+                                          bottomRight: Radius.circular(25),
+                                        ),
+                                      ),
+                                      child: const Icon(
+                                        Icons.add,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
                             ],
                           ),
-                        ],
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              ),
+            ),
+            Expanded(
+              flex: 3,
+              child: Column(
+                children: [
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  const Text(
+                    "Total Bill",
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text(
+                        "Total Quantity:",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                      IconButton(
-                        onPressed: () {},
-                        icon: const Icon(Icons.remove_shopping_cart_outlined),
+                      Text(
+                        "Total (Qty : ${productController.totalQuantity})",
+                        style: const TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ],
                   ),
-                ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text(
+                        "Total Price:",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      Text(
+                        " ${productController.totalPrice}",
+                        style: const TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
               ),
-            );
-          },
+            ),
+          ],
         ),
       ),
     );
   }
 }
-
-// Padding(
-// padding: const EdgeInsets.all(10),
-// child: Column(
-// children: [
-// Expanded(
-// flex: 1,
-// child: Column(
-// children: [
-// Row(
-// mainAxisAlignment: MainAxisAlignment.spaceAround,
-// children: [
-// Obx(
-// () => Text(
-// "Total Quantity: ${productController.totalQuantity}",
-// style: const TextStyle(
-// fontWeight: FontWeight.w500,
-// fontSize: 18,
-// ),
-// ),
-// ),
-// Obx(
-// () => Text(
-// "Total Price: ${productController.totalPrice}",
-// style: const TextStyle(
-// fontWeight: FontWeight.w500,
-// fontSize: 18,
-// ),
-// ),
-// ),
-// ],
-// ),
-// ],
-// ),
-// ),
-// Expanded(
-// flex: 12,
-// child: Obx(
-// () {
-// return ListView.builder(
-// itemCount: productController.addedProducts.length,
-// itemBuilder: (context, i) {
-// return Card(
-// elevation: 3,
-// child: Container(
-// height: h * 0.3,
-// width: w,
-// decoration: BoxDecoration(
-// borderRadius: BorderRadius.circular(15),
-// ),
-// child: Column(
-// children: [
-// Container(
-// height: h * 0.2,
-// width: w,
-// decoration: BoxDecoration(
-// borderRadius: const BorderRadius.vertical(
-// top: Radius.circular(10),
-// ),
-// image: DecorationImage(
-// image: AssetImage(
-// "${productController.addedProducts[i].image}"),
-// fit: BoxFit.cover,
-// ),
-// ),
-// ),
-// Row(
-// mainAxisAlignment:
-// MainAxisAlignment.spaceAround,
-// children: [
-// Column(
-// children: [
-// Text(
-// "${productController.addedProducts[i].name}",
-// style: const TextStyle(
-// fontSize: 22,
-// fontWeight: FontWeight.bold,
-// ),
-// ),
-// Text(
-// "Rs: ${productController.addedProducts[i].price}",
-// style: const TextStyle(
-// fontSize: 18,
-// fontWeight: FontWeight.bold,
-// ),
-// ),
-// ],
-// ),
-// OutlinedButton(
-// onPressed: () {
-// // productController.countPlus(
-// //     product: Global.food[i]);
-// setState(() {});
-// },
-// child: const Icon(Icons.add),
-// ),
-// Text(
-// "${Global.food[i].quantity}",
-// style: const TextStyle(fontSize: 20),
-// ),
-// OutlinedButton(
-// onPressed: () {
-// // productController.countDecrement(
-// //     product: Global.food[i]);
-// setState(() {});
-// },
-// child: const Icon(Icons.remove),
-// ),
-// OutlinedButton(
-// onPressed: () {
-// productController.removeProduct(
-// product: Global.food[i],
-// );
-// },
-// child:
-// const Icon(Icons.remove_shopping_cart),
-// ),
-// ],
-// ),
-// ],
-// ),
-// ),
-// );
-// },
-// );
-// },
-// ),
-// ),
-// ],
-// ),
-// ),

@@ -1,59 +1,46 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../models/product_models.dart';
 
-class ProductController extends ChangeNotifier {
-  RxList allcart = [].obs;
+class ProductController extends GetxController {
+  RxList addedProduct = [].obs;
+  RxList productQuantity = [].obs;
 
-  get allProduct {
-    int totalcount = 0;
-    allcart.forEach((element) {
-      totalcount += totalcount;
-    });
-    return totalcount;
+  void addQuantity({required Product product, required int index}) {
+    productQuantity[index]++;
   }
 
-  get totalPrice {
-    num price = 0;
-    for (int i = 0; i < allcart.length; i++) {
-      price += (allcart[i].price * allcart[i].quantity);
+  void removeQuantity({required Product product, required int index}) {
+    (productQuantity[index] > 1) ? productQuantity[index]-- : product;
+  }
+
+  RxInt get totalQuantity {
+    RxInt totalQuantity = 0.obs;
+    for (var element in productQuantity) {
+      totalQuantity += element;
     }
-    return price;
+    return totalQuantity;
+    update();
   }
 
-  void Countpluse({required Product product}) {
-    product.quantity++;
-    notifyListeners();
-  }
-
-  void CountdecrementAndRemove({required Product product}) {
-    if (product.quantity > 1) {
-      product.quantity--;
-
-      notifyListeners();
+  RxInt get totalPrice {
+    RxInt finalTotal = 0.obs;
+    for (var element in addedProduct) {
+      int index = addedProduct.indexOf(element);
+      finalTotal += element.price * productQuantity[index];
     }
+    return finalTotal;
+    update();
   }
 
-  void RemoveFromCart({required Product product}) {
-    product.quantity = 0;
-    print(product.quantity);
-    allcart.remove(product);
-
-    notifyListeners();
+  addProduct({required Product product}) {
+    addedProduct.add(product);
+    productQuantity.add(1);
+    update();
   }
 
-  void addToCart({required Product product}) {
-    if (product.quantity >= 1) {
-      print(product.quantity);
-      print("same");
-    } else {
-      print("add cart");
-
-      product.quantity++;
-      allcart.add(product);
-
-      notifyListeners();
-    }
+  removeProduct({required Product product, required int quantity}) {
+    addedProduct.remove(product);
+    productQuantity.remove(quantity);
+    update();
   }
 }

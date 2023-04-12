@@ -1,4 +1,5 @@
 import 'package:e_commerce_app/controllers/product_controlers.dart';
+import 'package:e_commerce_app/globals/all_products.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -129,7 +130,7 @@ class _HomePageState extends State<HomePage> {
 
                   return Expanded(
                     child: GridView.builder(
-                      itemCount: snapShot.data.length,
+                      itemCount: Global.food.length,
                       gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
                         maxCrossAxisExtent:
                             MediaQuery.of(context).size.width / 2,
@@ -163,8 +164,7 @@ class _HomePageState extends State<HomePage> {
                                         ),
                                         image: DecorationImage(
                                           image: AssetImage(
-                                            data[i].image!,
-                                          ),
+                                              "${Global.food[i].image}"),
                                           fit: BoxFit.cover,
                                         ),
                                       ),
@@ -175,11 +175,11 @@ class _HomePageState extends State<HomePage> {
                                           MainAxisAlignment.spaceAround,
                                       children: [
                                         Text(
-                                          "RS: ${data[i].price}",
+                                          "RS: ${Global.food[i].price}",
                                           style: const TextStyle(
                                             fontSize: 18,
                                             fontWeight: FontWeight.w600,
-                                            color: Colors.black38,
+                                            color: Colors.grey,
                                           ),
                                         ),
                                         const Text(
@@ -201,21 +201,18 @@ class _HomePageState extends State<HomePage> {
                                           width: 10,
                                         ),
                                         Text(
-                                          data[i].name!,
+                                          "${Global.food[i].name}",
                                           style: const TextStyle(
                                             fontSize: 15,
                                             fontWeight: FontWeight.w600,
-                                            color: Colors.black,
                                           ),
                                         ),
                                         const SizedBox(width: 20),
                                         const Spacer(),
                                         InkWell(
                                           onTap: () {
-                                            Get.toNamed(
-                                              "/CartPage",
-                                              arguments: data[i],
-                                            );
+                                            productController.addProduct(
+                                                product: Global.food[i]);
                                           },
                                           child: Container(
                                             height: 50,

@@ -16,7 +16,7 @@ class Global {
       name: "Manchurian",
       image: "images/food/manchurian.jpg",
       detail:
-          "Pav Bhaji is a fast food dish from Mumbai (Bombay), India, consisting of a vegetable curry (bhaji) cooked in tomato gravy and served with a soft bread roll (pav).",
+          "Manchurian is a fast food dish from Mumbai (Bombay), India, consisting of a vegetable curry (Manchurian) cooked in tomato gravy and served with a soft bread roll (Manchurian).",
       price: 100,
       quantity: 1,
     ),
@@ -25,7 +25,7 @@ class Global {
       name: "Sandwich",
       image: "images/food/sandwich.jpeg",
       detail:
-          "Pav Bhaji is a fast food dish from Mumbai (Bombay), India, consisting of a vegetable curry (bhaji) cooked in tomato gravy and served with a soft bread roll (pav).",
+          "Sandwich is a fast food dish from Mumbai (Bombay), India, consisting of a vegetable curry (Sandwich) cooked in tomato gravy and served with a soft bread roll (pav).",
       price: 150,
       quantity: 1,
     ),
@@ -34,7 +34,7 @@ class Global {
       name: "Dosa",
       image: "images/food/dosa.jpeg",
       detail:
-          "Pav Bhaji is a fast food dish from Mumbai (Bombay), India, consisting of a vegetable curry (bhaji) cooked in tomato gravy and served with a soft bread roll (pav).",
+          "Dosa is a fast food dish from Mumbai (Bombay), India, consisting of a vegetable curry (Dosa) cooked in tomato gravy and served with a soft bread roll (Dosa).",
       price: 250,
       quantity: 1,
     ),
@@ -43,7 +43,7 @@ class Global {
       name: "Chinese Bhel",
       image: "images/food/Chinese bhel.jpg",
       detail:
-          "Pav Bhaji is a fast food dish from Mumbai (Bombay), India, consisting of a vegetable curry (bhaji) cooked in tomato gravy and served with a soft bread roll (pav).",
+          "Chinese Bhel is a fast food dish from Mumbai (Bombay), India, consisting of a vegetable curry (Chinese Bhel) cooked in tomato gravy and served with a soft bread roll (Chinese Bhel).",
       price: 160,
       quantity: 1,
     ),
@@ -52,7 +52,7 @@ class Global {
       name: "7 Cheese",
       image: "images/food/7 cheese.jpg",
       detail:
-          "Pav Bhaji is a fast food dish from Mumbai (Bombay), India, consisting of a vegetable curry (bhaji) cooked in tomato gravy and served with a soft bread roll (pav).",
+          "7 Cheese is a fast food dish from Mumbai (Bombay), India, consisting of a vegetable curry (7 Cheese) cooked in tomato gravy and served with a soft bread roll (7 Cheese).",
       price: 280,
       quantity: 1,
     ),
@@ -61,7 +61,7 @@ class Global {
       name: "Red Bull",
       image: "images/drink/red bull.jpg",
       detail:
-          "Pav Bhaji is a fast food dish from Mumbai (Bombay), India, consisting of a vegetable curry (bhaji) cooked in tomato gravy and served with a soft bread roll (pav).",
+          "Red Bull is a fast food dish from Mumbai (Bombay), India, consisting of a vegetable curry (Red Bull) cooked in tomato gravy and served with a soft bread roll (Red Bull).",
       price: 140,
       quantity: 1,
     ),
@@ -70,7 +70,7 @@ class Global {
       name: "Chas",
       image: "images/drink/chas.jpeg",
       detail:
-          "Pav Bhaji is a fast food dish from Mumbai (Bombay), India, consisting of a vegetable curry (bhaji) cooked in tomato gravy and served with a soft bread roll (pav).",
+          "Chas is a fast food dish from Mumbai (Bombay), India, consisting of a vegetable curry (Chas) cooked in tomato gravy and served with a soft bread roll (Chas).",
       price: 30,
       quantity: 1,
     ),
@@ -79,7 +79,7 @@ class Global {
       name: "Coca Cola",
       image: "images/drink/coca cola.jpeg",
       detail:
-          "Pav Bhaji is a fast food dish from Mumbai (Bombay), India, consisting of a vegetable curry (bhaji) cooked in tomato gravy and served with a soft bread roll (pav).",
+          "Coca Cola is a fast food dish from Mumbai (Bombay), India, consisting of a vegetable curry (Coca Cola) cooked in tomato gravy and served with a soft bread roll (Coca Cola).",
       price: 80,
       quantity: 1,
     ),
@@ -88,7 +88,7 @@ class Global {
       name: "Cold Coco",
       image: "images/drink/cold coco.jpg",
       detail:
-          "Pav Bhaji is a fast food dish from Mumbai (Bombay), India, consisting of a vegetable curry (bhaji) cooked in tomato gravy and served with a soft bread roll (pav).",
+          "Cold Coco is a fast food dish from Mumbai (Bombay), India, consisting of a vegetable curry (Cold Coco) cooked in tomato gravy and served with a soft bread roll (Cold Coco).",
       price: 90,
       quantity: 1,
     ),
